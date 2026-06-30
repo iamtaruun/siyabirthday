@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>🎂 Happy Birthday Mirchi 🌶️❤️ | Our Memory Scrapbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f1e0ff, #fff4e0, #daeaf8);
+      background-size: 500% 500%;
+      animation: gradientShift 14s ease infinite;
+      min-height: 100vh;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="%23ff8a80" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 14 14, auto;
+      overflow-x: hidden;
+      color: #3e3640;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+
+    .bg-madness {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floater {
+      position: absolute;
+      animation: floatCrazy 12s infinite alternate ease-in-out;
+      opacity: 0.3;
+      filter: drop-shadow(0 0 6px rgba(255, 180, 180, 0.5));
+    }
+    @keyframes floatCrazy {
+      0% { transform: translate(0, 0) rotate(0deg) scale(0.9); }
+      100% { transform: translate(40px, -35px) rotate(8deg) scale(1.15); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes wobbleSkew {
+      0%,100%{ transform: rotate(0deg); }
+      25%{ transform: rotate(2.5deg) scale(1.02); }
+      75%{ transform: rotate(-2.5deg) scale(1.02); }
+    }
+    @keyframes bounceFloat {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-18px); }
+    }
+    @keyframes popIn {
+      0%{ transform: scale(0.3); opacity:0; }
+      80%{ transform: scale(1.1); }
+      100%{ transform: scale(1); opacity:1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.8rem;
+    }
+
+    .glass-card {
+      background: rgba(255, 250, 252, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 3.5rem;
+      padding: 2.8rem 2rem;
+      box-shadow: 0 30px 50px rgba(245, 160, 180, 0.15), 0 10px 25px rgba(255, 220, 220, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      margin: 2.2rem 0;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+      animation: popIn 0.7s ease-out;
+    }
+    .glass-card:hover {
+      box-shadow: 0 35px 60px rgba(250, 140, 160, 0.25);
+      transform: translateY(-4px);
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+    .nickname {
+      color: #d4506d;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-block;
+      transition: 0.2s;
+      text-shadow: 0 0 10px #ffb6c1;
+    }
+    .nickname:hover {
+      animation: wobbleSkew 0.4s infinite;
+    }
+
+    button {
+      background: rgba(255, 235, 240, 0.8);
+      border: none;
+      padding: 1.1rem 2.5rem;
+      border-radius: 4rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #4a3344;
+      backdrop-filter: blur(15px);
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(245, 140, 160, 0.35);
+      transition: 0.3s;
+      border: 1px solid white;
+      letter-spacing: 0.5px;
+    }
+    button:hover {
+      background: rgba(255, 245, 250, 0.95);
+      transform: scale(1.07) translateY(-3px);
+      box-shadow: 0 22px 40px rgba(255, 120, 140, 0.5);
+    }
+
+    #landingScreen {
+      position: fixed;
+      top:0;left:0;width:100%;height:100%;
+      background: radial-gradient(circle at 30% 40%, #ffeef4, #f8e8ff);
+      backdrop-filter: blur(25px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 1.2s ease, visibility 1.2s;
+    }
+    .gift-box {
+      font-size: 6rem;
+      cursor: pointer;
+      animation: bounceFloat 1.8s infinite, wobbleSkew 2.2s infinite;
+      filter: drop-shadow(0 25px 20px rgba(210, 100, 120, 0.5));
+    }
+
+    .cake-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-size: 3.5rem;
+      margin: 1.2rem 0;
+    }
+    .candle {
+      animation: flicker 0.7s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 25px gold; }
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .timeline-card {
+      background: rgba(255, 250, 252, 0.7);
+      backdrop-filter: blur(14px);
+      border-radius: 2.8rem;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      border: 1px solid white;
+      animation: popIn 0.6s ease-out;
+    }
+    .timeline-card:hover {
+      transform: translateY(-8px) rotate(0.5deg);
+      box-shadow: 0 30px 45px rgba(255, 170, 170, 0.3);
+    }
+
+    /* ========== GALLERY STYLES ========== */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .polaroid {
+      background: #fffef9;
+      padding: 0.7rem 0.7rem 2.5rem 0.7rem;
+      border-radius: 0.8rem;
+      box-shadow: 5px 8px 18px rgba(0,0,0,0.08);
+      transform: rotate(-2deg);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+      cursor: pointer;
+      max-width: 170px;
+      animation: popIn 0.5s;
+      border: 1px solid rgba(255,200,200,0.3);
+    }
+    .polaroid:nth-child(even) { transform: rotate(2.5deg); }
+    .polaroid:nth-child(3n) { transform: rotate(-1.5deg); }
+    .polaroid:hover { 
+      transform: scale(1.08) rotate(0deg) !important; 
+      box-shadow: 0 15px 30px rgba(255,130,150,0.45);
+      z-index: 5;
+    }
+    .polaroid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      display: block;
+      background: #f7d0da;
+    }
+    .polaroid video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      display: block;
+      background: #f7d0da;
+    }
+    .polaroid .caption {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #5a4050;
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+    }
+    /* Special polaroid styles for ice cream and feet photos */
+    .polaroid.special-icecream {
+      border: 2px dashed #ffb6c1;
+      background: #fff5f7;
+    }
+    .polaroid.special-feet {
+      border: 2px dashed #d4b8c0;
+      background: #fefaf5;
+    }
+
+    .fact-card {
+      background: rgba(255, 242, 248, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 2.5rem;
+      padding: 1.5rem 1.8rem;
+      transition: 0.3s;
+      border: 1px solid white;
+      font-weight: 600;
+    }
+    .fact-card:hover {
+      animation: wobbleSkew 0.5s ease;
+      background: rgba(255, 220, 230, 0.8);
+    }
+
+    .typewriter-text {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      border-right: 3px solid #d4506d;
+      white-space: pre-wrap;
+      background: rgba(255,255,250,0.5);
+      padding: 0.5rem;
+    }
+
+    #surpriseOverlay {
+      position: fixed;
+      top:0;left:0;width:100%;height:100%;
+      background: rgba(15, 5, 25, 0.9);
+      backdrop-filter: blur(18px);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .music-player {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(255, 245, 250, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 4rem;
+      padding: 0.7rem 1.8rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      z-index: 99;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border:1px solid white;
+    }
+
+    @media (max-width: 600px) {
+      .glass-card { padding: 1.8rem; }
+      .polaroid { max-width: 140px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-madness" id="bgMadness"></div>
+
+  <!-- LANDING SCREEN -->
+  <div id="landingScreen">
+    <div class="gift-box" id="giftBox">🎁</div>
+    <p style="margin-top:1.8rem; font-weight:700; color:#c2445a; font-size:1.3rem;">Someone very special has a surprise waiting...</p>
+    <p style="font-size:1rem; color:#765b7a;">Click the gift to begin ✨</p>
+  </div>
+
+  <div class="container" id="mainContent" style="display: none;">
+    <!-- Hero Section -->
+    <div class="glass-card" style="text-align: center; position:relative;">
+      <h1 style="font-size: 3.4rem; animation: bounceFloat 3s infinite;">🎂 Happy Birthday, <span class="nickname" id="mirchiNickname">Mirchi 🌶️</span>❤️</h1>
+      <p style="font-size: 1.5rem; margin:1.2rem 0;">"Every friendship has a story.<br>Ours became one of my favorite ones."</p>
+      <div class="cake-section">
+        <span>🎂</span><span class="candle">🕯️</span><span>🎈</span>
+      </div>
+      <button id="scrollToMemories" style="margin-top:0.5rem;">✨ Let's Relive Our Memories</button>
+      <div style="margin-top:1rem; display:flex; justify-content:center; gap:0.8rem; font-size:2.2rem; flex-wrap:wrap;">
+        🎈☁️🦋✨💖🌶️😴🍦
+      </div>
+    </div>
+
+    <!-- Countdown / Celebration -->
+    <div id="countdownContainer" class="glass-card" style="text-align:center; display:none;">
+      <h2>⏳ Counting down to Mirchi's Day...</h2>
+      <div id="countdownTimer" style="font-size:3rem; font-weight:800; color:#c94b6b;"></div>
+    </div>
+    <div id="birthdayCelebration" style="display:none; text-align:center; margin:2rem 0;">
+      <h2 style="font-size:2.5rem;">🎉 Happy Birthday, Mirchi! 🌶️🎂</h2>
+    </div>
+
+    <!-- Friendship Timeline -->
+    <div class="glass-card" id="timelineSection">
+      <h2 style="text-align:center;">📖 Our Crazy Friendship Story</h2>
+      <div class="timeline">
+        <div class="timeline-card">📚 <strong>10th Class</strong><br>"i see you first time."</div>
+        <div class="timeline-card">🌸 <strong>11th Class</strong><br>"This is where our friendship truly exploded with laughter."</div>
+        <div class="timeline-card">😂 <strong>Endless Conversations</strong> & inside jokes</div>
+        <div class="timeline-card">🍦 <strong>Ice Cream Days</strong> (melting happiness)</div>
+        <div class="timeline-card">👣 <strong>Little Moments That Became Big Memories</strong></div>
+        <div class="timeline-card">❤️ <strong>Best Friends Forever (Mirchi level)</strong></div>
+      </div>
+    </div>
+
+    <!-- ========== MEMORY GALLERY WITH 8 PHOTO SLOTS ========== -->
+    <div class="glass-card" id="gallerySection">
+      <h2 style="text-align:center; margin-bottom:1.5rem;">📸 Our Memory Polaroids</h2>
+      <p style="text-align:center; margin-bottom:2rem; font-style:italic; color:#7a5c6e;">
+        ✨ Click any photo to enlarge ✨
+      </p>
+      <div class="gallery" id="galleryContainer">
+
+        <!-- 
+          ==========================================
+          PHOTO 1: Ice Cream Group Picture
+          Special photo where you're all holding ice creams
+          (faces aren't visible)
+          ==========================================
+          REPLACE the src below with your actual image file.
+          Example: src="images/ice-cream-group.jpg"
+          Or if images are in the same folder: src="ice-cream-group.jpg"
+        -->
+        <div class="polaroid special-icecream" onclick="enlargeImage(this)">
+          <img 
+            src="3.jpeg" 
+            alt="All of us holding ice creams"
+            title="🍦 Our Ice Cream Day"
+          >
+          <div class="caption">🍦 Ice Cream Squad</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 2: Feet Together Picture
+          Special photo of your feet standing together
+          that Siya clicked herself
+          ==========================================
+          REPLACE the src below with your actual image file.
+          Example: src="images/feet-together.jpg"
+        -->
+        <div class="polaroid special-feet" onclick="enlargeImage(this)">
+          <img 
+            src="2.jpeg" 
+            alt="Our feet standing together"
+            title="👣 Siya clicked this"
+          >
+          <div class="caption">👣 Siya clicked this</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 3: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <img 
+            src="8.jpeg" 
+            alt="Memory 3"
+          >
+          <div class="caption">🌸 Bloom Day</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 4: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <img 
+            src="4.jpeg" 
+            alt="Memory 4"
+          >
+          <div class="caption">✨ Sparkle Moment</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 5: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <img 
+            src="WhatsApp Image 2026-06-30 at 18.30.54.jpeg" 
+            alt="Memory 5"
+          >
+          <div class="caption">🎈 Fun Times</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 6: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <img 
+            src="5.jpeg" 
+            alt="Memory 6"
+          >
+          <div class="caption">☁️ Cloudy Laughs</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 7: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <img 
+            src="7.jpeg" 
+            alt="Memory 7"
+          >
+          <div class="caption">💛 Golden Memory</div>
+        </div>
+
+        <!-- 
+          ==========================================
+          PHOTO 8: Replace with your image
+          ==========================================
+        -->
+        <div class="polaroid" onclick="enlargeImage(this)">
+          <video autoplay loop muted src="6.mp4"></video>
+          <div class="caption">🌶️ Mirchi Vibes</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fun Facts About Mirchi -->
+    <div class="glass-card">
+      <h2>🌶️ Fun Facts About Mirchi</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:1.3rem; justify-content:center;">
+        <div class="fact-card">😴 Professional Sleeper</div>
+        <div class="fact-card">🍦 Ice Cream Approved</div>
+        <div class="fact-card">😂 Always Creates Memories</div>
+        <div class="fact-card">🌶️ Officially Known As Mirchi</div>
+        <div class="fact-card">💖 One of My Favorite Humans</div>
+        <div class="fact-card">✨ Makes Every Day Brighter</div>
+      </div>
+    </div>
+
+    <!-- Birthday Letter -->
+    <div class="glass-card" id="letterSection">
+      <h2>💌 A Letter for Mirchi</h2>
+      <div id="typewriterDisplay" class="typewriter-text" style="min-height:160px;"></div>
+      <p style="margin-top:1.3rem; font-weight:bold; font-size:1.3rem;">Happy Birthday once again, Mirchi 🌶️❤️</p>
+    </div>
+
+    <!-- Surprise Button -->
+    <div style="text-align:center; margin:2.5rem;">
+      <button id="surpriseBtn" style="font-size:1.4rem; padding:1.2rem 3rem;">🎁 One Last Surprise</button>
+    </div>
+
+    <footer style="text-align:center; margin:2.5rem; opacity:0.9;">
+      <p style="font-size:1.2rem;">Made with lots of ❤️ for my best friend, Mirchi.</p>
+      <p style="font-weight:700;">Happy Birthday, Siya.</p>
+    </footer>
+  </div>
+
+  <!-- Surprise Overlay -->
+  <div id="surpriseOverlay">
+    <div id="starsContainer" style="position:relative; width:100%; height:65%;"></div>
+    <p style="font-size:1.6rem; margin:0.8rem;">✨ Click stars for sweet messages ✨</p>
+    <p id="finalMessage" style="font-size:2.2rem; font-weight:bold; text-align:center;"></p>
+    <button id="closeSurprise" style="margin-top:2rem;">Close ✨</button>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player" id="musicPlayer">
+    <span>🎵</span>
+    <span id="songTitle">Mirchi's Birthday Waltz</span>
+    <button id="playPauseBtn">▶️</button>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.6">
+    <audio id="bgAudio" autoplay loop>
+      <source src="vidssave_dBl4B9iT.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    (function() {
+      // Background floating elements
+      function populateBackground() {
+        const bg = document.getElementById('bgMadness');
+        if(!bg) return;
+        const items = ['☁️','✨','🦋','💖','⭐','🌸','🌶️','😴','🍦','🎈'];
+        for(let i=0; i<24; i++) {
+          let el = document.createElement('span');
+          el.className = 'floater';
+          el.textContent = items[Math.floor(Math.random()*items.length)];
+          el.style.left = Math.random()*100+'%';
+          el.style.top = Math.random()*100+'%';
+          el.style.fontSize = (22 + Math.random()*35)+'px';
+          el.style.animationDuration = (10+Math.random()*18)+'s';
+          bg.appendChild(el);
+        }
+      }
+      populateBackground();
+
+      const landing = document.getElementById('landingScreen');
+      const giftBox = document.getElementById('giftBox');
+      const mainContent = document.getElementById('mainContent');
+      const bgAudio = document.getElementById('bgAudio');
+
+      giftBox.addEventListener('click', () => {
+        landing.style.opacity = '0';
+        landing.style.visibility = 'hidden';
+        mainContent.style.display = 'block';
+        bgAudio.play().catch(()=>{});
+        for(let i=0;i<5;i++){
+          setTimeout(()=>{
+            if(window.confetti) confetti({particleCount:70, spread:100, origin:{y:0.5, x: Math.random()}});
+          }, i*120);
+        }
+        launchExtraSparkles(30);
+        for(let j=0;j<14;j++){
+          setTimeout(()=> fallRandomEmoji('🌶️'), j*90);
+          setTimeout(()=> fallRandomEmoji('❤️'), j*110);
+        }
+      });
+
+      function fallRandomEmoji(emoji) {
+        const el = document.createElement('span');
+        el.textContent = emoji;
+        el.style.position = 'fixed';
+        el.style.left = Math.random()*100+'%';
+        el.style.top = '-30px';
+        el.style.fontSize = '2.2rem';
+        el.style.zIndex = '9999';
+        el.style.animation = 'fallDown 2.2s linear forwards';
+        document.body.appendChild(el);
+        setTimeout(()=> el.remove(), 2300);
+      }
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = `@keyframes fallDown { to { transform: translateY(105vh) rotate(720deg); opacity:0; } }`;
+      document.head.appendChild(styleSheet);
+
+      function launchExtraSparkles(count=15) {
+        for(let i=0;i<count;i++){
+          setTimeout(()=>{
+            const s = document.createElement('span');
+            s.innerHTML = '✨';
+            s.style.position = 'fixed';
+            s.style.left = Math.random()*100+'%';
+            s.style.top = Math.random()*100+'%';
+            s.style.fontSize = '2rem';
+            s.style.zIndex = '9999';
+            document.body.appendChild(s);
+            setTimeout(()=> s.remove(), 700);
+          }, i*30);
+        }
+      }
+
+      document.body.addEventListener('click', (e) => {
+        if(e.target.tagName==='BUTTON' || e.target.closest('button')) return;
+        const heart = document.createElement('span');
+        heart.innerHTML = '❤️';
+        heart.style.position = 'fixed';
+        heart.style.left = e.clientX+'px';
+        heart.style.top = e.clientY+'px';
+        heart.style.fontSize = '1.8rem';
+        heart.style.zIndex='999';
+        document.body.appendChild(heart);
+        setTimeout(()=> heart.remove(), 800);
+      });
+
+      document.getElementById('mirchiNickname')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        for(let i=0;i<18;i++){
+          setTimeout(()=> fallRandomEmoji('🌶️'), i*60);
+        }
+      });
+
+      document.body.addEventListener('dblclick', (e) => {
+        for(let i=0;i<12;i++){
+          let h = document.createElement('span');
+          h.innerHTML = '❤️';
+          h.style.position = 'fixed';
+          h.style.left = (e.clientX + (Math.random()-0.5)*90)+'px';
+          h.style.top = (e.clientY + (Math.random()-0.5)*70)+'px';
+          h.style.fontSize = '2rem';
+          h.style.zIndex='999';
+          document.body.appendChild(h);
+          setTimeout(()=> h.remove(), 900);
+        }
+      });
+
+      // Countdown logic (July 17)
+      const now = new Date();
+      const target = new Date(now.getFullYear(), 6, 17);
+      if (now > target) target.setFullYear(target.getFullYear()+1);
+      const countdownContainer = document.getElementById('countdownContainer');
+      const timerDisplay = document.getElementById('countdownTimer');
+      const celebration = document.getElementById('birthdayCelebration');
+      
+      function updateCountdown() {
+        const diff = target - new Date();
+        if(diff <= 0) {
+          if(countdownContainer) countdownContainer.style.display = 'none';
+          if(celebration) celebration.style.display = 'block';
+          if(window.confetti) {
+            confetti({particleCount:200, spread:120, origin:{y:0.5}});
+          }
+          return;
+        }
+        if(countdownContainer) countdownContainer.style.display = 'block';
+        const days = Math.floor(diff/(1000*60*60*24));
+        const hours = Math.floor((diff/(1000*60*60))%24);
+        const mins = Math.floor((diff/(1000*60))%60);
+        const secs = Math.floor((diff/1000)%60);
+        if(timerDisplay) timerDisplay.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      document.getElementById('scrollToMemories')?.addEventListener('click', ()=>{
+        document.getElementById('timelineSection')?.scrollIntoView({behavior:'smooth'});
+      });
+
+      // Enlarge polaroid image on click
+      window.enlargeImage = function(polaroidEl) {
+        const img = polaroidEl.querySelector('img');
+        if(!img) return;
+        const overlay = document.createElement('div');
+        overlay.style.position='fixed'; 
+        overlay.style.top=0; 
+        overlay.style.left=0;
+        overlay.style.width='100%'; 
+        overlay.style.height='100%';
+        overlay.style.background='rgba(0,0,0,0.75)'; 
+        overlay.style.backdropFilter='blur(5px)';
+        overlay.style.zIndex='1001';
+        overlay.style.display='flex'; 
+        overlay.style.alignItems='center'; 
+        overlay.style.justifyContent='center';
+        overlay.style.flexDirection='column';
+        
+        const bigImg = document.createElement('img');
+        bigImg.src = img.src;
+        bigImg.style.maxWidth='88%'; 
+        bigImg.style.maxHeight='80vh'; 
+        bigImg.style.borderRadius='2rem';
+        bigImg.style.boxShadow='0 20px 50px rgba(0,0,0,0.5)';
+        bigImg.style.objectFit='contain';
+        
+        const caption = document.createElement('p');
+        const capText = polaroidEl.querySelector('.caption')?.textContent || '';
+        caption.textContent = capText;
+        caption.style.color = 'white';
+        caption.style.marginTop = '1rem';
+        caption.style.fontSize = '1.5rem';
+        caption.style.fontFamily = "'Caveat', cursive";
+        
+        overlay.appendChild(bigImg);
+        overlay.appendChild(caption);
+        overlay.addEventListener('click', (e) => {
+          if(e.target === overlay) overlay.remove();
+        });
+        document.body.appendChild(overlay);
+      };
+
+      // Typewriter effect
+      const letterText = `Dear Mirchi 🌶️,\n\nFrom 10th class hellos to 11th class madness, you've filled my days with laughter. Thank you for being unapologetically YOU. Our friendship is my favorite adventure.\n\nWith love & chaos,\nYour best friend.`;
+      const typewriterEl = document.getElementById('typewriterDisplay');
+      let i=0;
+      function typeWriter(){
+        if(typewriterEl && i<letterText.length){
+          typewriterEl.textContent += letterText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 40);
+        }
+      }
+      setTimeout(typeWriter, 400);
+
+      // Surprise overlay
+      const surpriseBtn = document.getElementById('surpriseBtn');
+      const surpriseOverlay = document.getElementById('surpriseOverlay');
+      const closeSurprise = document.getElementById('closeSurprise');
+      const starsContainer = document.getElementById('starsContainer');
+      const finalMsg = document.getElementById('finalMessage');
+      const starMessages = ["✨ Stay happy.","✨ Keep smiling.","✨ Sleep well... as always 😴","✨ Never stop being yourself.","✨ Thank you for being my best friend."];
+      
+      surpriseBtn?.addEventListener('click', ()=>{
+        surpriseOverlay.style.display = 'flex';
+        starsContainer.innerHTML = '';
+        for(let i=0;i<24;i++){
+          let star = document.createElement('span');
+          star.textContent = '⭐';
+          star.style.position = 'absolute';
+          star.style.left = Math.random()*92+'%';
+          star.style.top = Math.random()*85+'%';
+          star.style.fontSize = '2.2rem';
+          star.style.cursor = 'pointer';
+          star.style.animation = 'bounceFloat 1.5s infinite';
+          star.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            alert(starMessages[Math.floor(Math.random()*starMessages.length)]);
+          });
+          starsContainer.appendChild(star);
+        }
+        finalMsg.textContent = "You'll always have a special place in my memories. Happy Birthday, Mirchi. ❤️";
+      });
+
+      closeSurprise?.addEventListener('click', ()=>{
+        surpriseOverlay.style.display = 'none';
+      });
+
+      // Music player
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const volumeSlider = document.getElementById('volumeSlider');
+      playPauseBtn?.addEventListener('click', ()=>{
+        if(bgAudio.paused){
+          bgAudio.play();
+          playPauseBtn.textContent = '⏸️';
+        } else {
+          bgAudio.pause();
+          playPauseBtn.textContent = '▶️';
+        }
+      });
+      volumeSlider?.addEventListener('input', (e)=>{
+        bgAudio.volume = e.target.value;
+      });
+
+      // Load confetti library
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1';
+      document.head.appendChild(script);
+    })();
+  </script>
+</body>
+</html>
