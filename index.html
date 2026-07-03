@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Happy Birthday Siya 🎉</title>
+<meta name="description" content="A birthday adventure — memories, games, and one very funny surprise.">
+
+<!-- Fonts: Fredoka (playful display) + Poppins (body/UI) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     AUDIO — background music, does not autoplay (started on Begin Journey)
+     ============================================================ -->
+<audio id="bg-music" loop preload="auto">
+  <source src="ilahi.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============================================================
+     FX CANVAS — shared layer for confetti / fireworks / particle text
+     ============================================================ -->
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+<!-- Toast notifications (achievement unlocks etc.) -->
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loading-screen">
+  <div class="loading-star-field" id="loading-star-field"></div>
+  <div class="loading-particles" id="loading-particles"></div>
+  <div class="loading-content">
+    <div class="loading-emoji">🎂</div>
+    <h1 class="loading-title">Initializing Birthday Experience<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></h1>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
+    </div>
+    <p class="loading-percent" id="loading-percent">0%</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PERSISTENT EASTER EGGS
+     ============================================================ -->
+<button id="hidden-hippo" class="hidden-hippo" aria-label="???" title="">🦛</button>
+<button id="easter-cake" class="easter-cake" aria-label="A curious floating cake" title="">🎂</button>
+
+<!-- ============================================================
+     FLOATING MUSIC PLAYER (revealed once journey begins)
+     ============================================================ -->
+<div id="music-player" class="music-player glass" aria-hidden="true">
+  <div class="music-disc" id="music-disc" aria-hidden="true">💿</div>
+  <button id="music-toggle" class="music-btn" aria-label="Play or pause music">
+    <span id="music-icon">▶️</span>
+  </button>
+  <button id="music-mute" class="music-btn" aria-label="Mute or unmute music">
+    <span id="mute-icon">🔊</span>
+  </button>
+  <input type="range" id="music-volume" class="music-volume" min="0" max="100" value="60" aria-label="Music volume">
+</div>
+
+<main id="main-content">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section id="hero" class="hero">
+    <div class="hero-star-field" id="hero-star-field"></div>
+    <div class="hero-balloons" id="hero-balloons"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">🎉 A Birthday Adventure Is Loaded 🎉</p>
+      <h1 class="hero-heading">Happy Birthday <span class="gradient-text">Siya</span></h1>
+      <p class="hero-subtitle">
+        This isn't just a website.<br>
+        It's a collection of memories, games, laughs,<br>
+        and one very funny surprise.
+      </p>
+      <button id="begin-journey-btn" class="btn-glow">
+        <span>Begin Journey</span>
+        <span class="arrow">→</span>
+      </button>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STORY TIMELINE
+       ============================================================ -->
+  <section id="timeline" class="section-block">
+    <p class="section-eyebrow">📖 how we got here</p>
+    <h2 class="section-title">The Story So Far</h2>
+
+    <div class="timeline">
+      <div class="timeline-rail" aria-hidden="true"></div>
+
+      <div class="timeline-item reveal" data-index="0">
+        <div class="timeline-node">🏫</div>
+        <div class="timeline-card glass">
+          <h3>10th Class</h3>
+          <p>This was the first time I saw you.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" data-index="1">
+        <div class="timeline-node">📚</div>
+        <div class="timeline-card glass">
+          <h3>11th Class</h3>
+          <p>This was the year we actually started talking.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" data-index="2">
+        <div class="timeline-node">😂</div>
+        <div class="timeline-card glass">
+          <h3>🍦 Ice Cream Days</h3>
+          <p>from CDLU shoping complex</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" data-index="3">
+        <div class="timeline-node">🎂</div>
+        <div class="timeline-card glass">
+          <h3>17 July</h3>
+          <p>Today is all about you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MEMORY GALLERY
+       ============================================================ -->
+  <section id="gallery" class="section-block">
+    <p class="section-eyebrow">📸 proof it happened</p>
+    <h2 class="section-title">Memory Gallery</h2>
+
+    <!-- Category 1: Her Pictures -->
+    <div class="gallery-category">
+      <h3 class="gallery-category-title">Her Pictures</h3>
+      <div class="gallery-grid">
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="8.jpeg" alt="A favorite picture of Siya" loading="lazy">
+            <div class="img-placeholder"><span>🖼️</span><small>photo1.jpg</small></div>
+          </div>
+          <figcaption>One of my favorite pictures.</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="5.jpeg" alt="A picture of Siya smiling" loading="lazy">
+            <div class="img-placeholder"><span>🖼️</span><small>photo2.jpg</small></div>
+          </div>
+          <figcaption>This smile deserved a place here.</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="4.jpeg" class="tilt" alt="A candid picture of Siya" loading="lazy">
+            <div class="img-placeholder"><span>🖼️</span><small>photo3.jpg</small></div>
+          </div>
+          <figcaption>Still one of my favorite clicks.</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="WhatsApp Image 2026-06-30 at 18.30.54.jpeg" alt="A picture of Siya" loading="lazy">
+            <div class="img-placeholder"><span>🖼️</span><small>photo4.jpg</small></div>
+          </div>
+          <figcaption>Couldn't leave this one out.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Category 2: Ice Cream Memory -->
+    <div class="gallery-category">
+      <h3 class="gallery-category-title">Ice Cream Memory</h3>
+      <div class="gallery-grid gallery-grid-single">
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="3.jpeg" alt="The gang getting ice cream" loading="lazy">
+            <div class="img-placeholder"><span>🍦</span><small>icecream.jpg</small></div>
+          </div>
+          <figcaption>One ice cream.<br>One gang.<br>One good memory. 🍦</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Category 3: Foot Picture -->
+    <div class="gallery-category">
+      <h3 class="gallery-category-title">Foot Picture</h3>
+      <div class="gallery-grid gallery-grid-single">
+        <figure class="gallery-item reveal">
+          <div class="gallery-frame">
+            <img src="7.jpeg" alt="An unexplainable picture of a foot" loading="lazy">
+            <div class="img-placeholder"><span>🦶</span><small>foot.jpg</small></div>
+          </div>
+          <figcaption>Still don't know why we clicked this...<br>But it's part of the memories now 😂</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MEMORY NOTES
+       ============================================================ -->
+  <section id="notes" class="section-block">
+    <p class="section-eyebrow">💌 Fun Facts </p>
+    <h2 class="section-title">About Mirchi</h2>
+
+    <div class="notes-grid">
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>😴 Professional Sleeper</p>
+      </div>
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>🍦 Ice Cream Approved</p>
+      </div>
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>😂 Always Creates Memories</p>
+      </div>
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>💖 One of My Favorite Humans</p>
+      </div>
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>Also Known As GHONGHA HIPPO</p>
+      </div>
+      <div class="note-card glass reveal">
+        <span class="note-quote-mark">"</span>
+        <p>Gets irritate easily</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAMES / ARCADE
+       ============================================================ -->
+  <section id="games" class="section-block">
+    <p class="section-eyebrow">🎮 insert coin</p>
+    <h2 class="section-title">The Arcade</h2>
+    <p class="section-subtitle">Three tiny games. Three tiny rewards. No skipping ahead (okay fine, you can).</p>
+
+    <!-- ---------------- GAME 1: CATCH THE CAKE ---------------- -->
+    <div class="arcade-cabinet reveal" id="game-catchcake">
+      <div class="cabinet-marquee">
+        <span class="cabinet-number">GAME 1</span>
+        <h3>🍰 Catch The Cake</h3>
+      </div>
+      <div class="cabinet-screen">
+
+        <!-- Intro overlay -->
+        <div class="game-overlay" id="catchcake-intro">
+          <h4>Catch The Cake</h4>
+          <p>Move the basket. Catch the cakes 🎂. Avoid the bombs 💣.<br>You've got 30 seconds. Go!</p>
+          <button class="btn-glow small" id="catchcake-start-btn">Start Game</button>
+        </div>
+
+        <!-- Live game -->
+        <div class="catchcake-hud" id="catchcake-hud" hidden>
+          <span>⏱️ <b id="catchcake-timer">30</b>s</span>
+          <span>🏆 <b id="catchcake-score">0</b></span>
+        </div>
+        <div class="catchcake-arena" id="catchcake-arena" tabindex="0" aria-label="Catch the cake game area. Use arrow keys or your pointer to move the basket." hidden>
+          <div class="catchcake-basket" id="catchcake-basket">🧺</div>
+        </div>
+
+        <!-- Score screen -->
+        <div class="game-overlay" id="catchcake-result" hidden>
+          <h4>🏆 Level Complete!</h4>
+          <p>Final score: <b id="catchcake-final-score">0</b></p>
+          <p class="game-overlay-sub">Unwrapping your reward...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------------- GAME 2: FRIENDSHIP QUIZ ---------------- -->
+    <div class="arcade-cabinet reveal" id="game-quiz">
+      <div class="cabinet-marquee">
+        <span class="cabinet-number">GAME 2</span>
+        <h3>🧠 Friendship Quiz</h3>
+      </div>
+      <div class="cabinet-screen">
+
+        <div class="game-overlay" id="quiz-intro">
+          <h4>Friendship Quiz</h4>
+          <p>Seven questions. One friendship. Let's see how well you actually know each other.</p>
+          <button class="btn-glow small" id="quiz-start-btn">Start Quiz</button>
+        </div>
+
+        <div class="quiz-hud" id="quiz-hud" hidden>
+          <span>Question <b id="quiz-current">1</b>/<b id="quiz-total">7</b></span>
+          <span>✅ <b id="quiz-score">0</b></span>
+        </div>
+        <div id="quiz-container" hidden></div>
+
+        <div class="game-overlay" id="quiz-result" hidden>
+          <h4>Quiz Complete!</h4>
+          <p>You scored <b id="quiz-final-score">0</b>/7</p>
+          <button class="btn-glow small" id="quiz-secret-btn">One More Question 👀</button>
+        </div>
+
+        <div id="secret-bonus-container" hidden></div>
+      </div>
+    </div>
+
+    <!-- ---------------- GAME 3: FIND THE GIFT ---------------- -->
+    <div class="arcade-cabinet reveal" id="game-gift">
+      <div class="cabinet-marquee">
+        <span class="cabinet-number">GAME 3</span>
+        <h3>🎁 Find The Gift</h3>
+      </div>
+      <div class="cabinet-screen">
+
+        <div class="game-overlay" id="gift-intro">
+          <h4>Find The Gift</h4>
+          <p>Nine gifts. One real surprise. Eight ways to be wrong. Choose carefully.</p>
+          <button class="btn-glow small" id="gift-start-btn">Start Searching</button>
+        </div>
+
+        <div id="gift-grid" class="gift-grid" hidden></div>
+
+        <div class="decrypt-overlay" id="decrypt-overlay" hidden>
+          <p class="decrypt-title">🎉 Congratulations! You found the real gift.</p>
+          <p class="decrypt-label">Decrypting Secret Birthday File...</p>
+          <div class="decrypt-bar-track"><div class="decrypt-bar-fill" id="decrypt-bar-fill"></div></div>
+          <p class="decrypt-percent" id="decrypt-percent">0%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL LETTER
+       ============================================================ -->
+  <section id="final-letter" class="section-block">
+    <p class="section-eyebrow">🎆 last thing, promise</p>
+    <h2 class="section-title">One Last Letter</h2>
+
+    <div class="letter-card glass reveal">
+      <p id="letter-text" class="letter-text"></p><span class="letter-cursor" id="letter-cursor">|</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL ENDING
+       ============================================================ -->
+  <section id="final-ending" class="final-ending">
+    <div class="ending-star-field" id="ending-star-field"></div>
+    <div class="ending-text-dom" id="ending-text-dom">🎉 Happy Birthday Ghongha Hippo 🦛🎉</div>
+    <div class="ending-credits" id="ending-credits">
+      <p>sada khush rhh aur merko bhi khush rkh<br>icream khati rhh aur<br>merko bhi khilati rhh<br>aur ek hippo dhundhna h aur cake bhi website me<br>and happy birthday again with lots of love 👽👽</p>
+      <p class="ending-signature">— Tiluuu</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     VIDEO MODAL (reusable for all reward / wrong-gift videos)
+     ============================================================ -->
+<div id="video-modal" class="video-modal" aria-hidden="true">
+  <div class="video-modal-backdrop" id="video-modal-backdrop"></div>
+  <div class="video-modal-card">
+    <p class="video-modal-title" id="video-modal-title">🎉 Reward Unlocked</p>
+    <div class="video-modal-frame">
+      <video id="modal-video" playsinline></video>
+      <div class="video-missing" id="video-missing" hidden>
+        <span>🎬</span>
+        <p>This video isn't in the folder yet.<br><code id="video-missing-name"></code></p>
+      </div>
+    </div>
+    <div class="video-modal-controls">
+      <button id="video-playpause" class="modal-btn" aria-label="Play or pause">⏸️</button>
+      <button id="video-replay" class="modal-btn" aria-label="Replay">🔁</button>
+      <button id="video-skip" class="modal-btn" aria-label="Skip">⏭️ Skip</button>
+      <button id="video-continue" class="modal-btn modal-btn-primary" aria-label="Continue journey">Continue Journey →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECRET KEYBOARD-CODE CELEBRATION OVERLAY
+     ============================================================ -->
+<div id="secret-celebration" class="secret-celebration" aria-hidden="true">
+  <p>🎊 Secret Code Unlocked 🎊</p>
+  <p class="secret-celebration-sub">You really do know her name.</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
